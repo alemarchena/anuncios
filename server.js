@@ -1,9 +1,3 @@
-if(process.env.NODE_ENV !== 'production'){
-
-    dotenv = require('dotenv').config()
-}
-
-
 const express = require('express')
 const app = express()
 const expressLayout = require('express-ejs-layouts')
@@ -21,15 +15,13 @@ app.use(express.static('public')) //aca se guardaran todo que sea publico, scrip
 //creo la conexion a la base de datos
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true})
+mongoose.connect('mongodb+srv://alejandro:V8dZv8A7Iip1IoKr@cluster0-ryhy7.mongodb.net/anunciosbdd?retryWrites=true',{useNewUrlParser:true})
 const db = mongoose.connection
 
-db.on('error', erro => console.error(error))
-db.once('open', erro => console.log('Conectado a la base de datos'))
-
+db.on('error', error => console.error(error))
+db.once('open', error => console.log('Conectado a la base de datos'))
 
 app.use('/',routerIndex)
 
 //escucha por el puerto del servidor o por el puerto 3000
 app.listen(process.env.PORT || 3000)
-
