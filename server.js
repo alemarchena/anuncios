@@ -23,7 +23,6 @@ const mongoose = require('mongoose')
 //mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true})
 
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true})
-console.log(process.env.DATABASE_URL)
 const db = mongoose.connection
 
 db.on('error', erro => console.error(error))
